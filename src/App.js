@@ -2,6 +2,8 @@ import './App.css';
 import { saveAs } from 'file-saver';
 import { useState } from 'react';
 
+let memeUrl = '';
+
 function MemeImage(props) {
   let topTextOutput = `/${props.topText}`;
   let bottomTextOutput = `/${props.bottomText}`;
@@ -16,13 +18,10 @@ function MemeImage(props) {
     templateOutput = '';
   }
 
+  memeUrl = `https://api.memegen.link/images${templateOutput}${topTextOutput}${bottomTextOutput}.png?height=450&width=450`;
+
   return (
-    <img
-      src={`https://api.memegen.link/images${templateOutput}${topTextOutput}${bottomTextOutput}.png?height=450&width=450`}
-      alt="Your desired meme"
-      id="memeId"
-      data-test-id="meme-image"
-    />
+    <img src={memeUrl} alt="Your desired meme" data-test-id="meme-image" />
   );
 }
 
@@ -30,8 +29,9 @@ export default function App() {
   const [topTextInput, setTopTextInput] = useState('');
   const [bottomTextInput, setBottomTextInput] = useState('');
   const [memeTemplate, setMemeTemplate] = useState('ugandanknuck');
+  console.log(MemeImage);
   const downloadMeme = () => {
-    saveAs(`${memeId.getAttribute('src')}`, 'meme.png');
+    saveAs(memeUrl, 'meme.png');
   };
 
   return (
