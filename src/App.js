@@ -1,4 +1,5 @@
 import './App.css';
+import { saveAs } from 'file-saver';
 import { useState } from 'react';
 
 function MemeImage(props) {
@@ -25,20 +26,13 @@ function MemeImage(props) {
   );
 }
 
-const downloadMeme = () => {
-  const memeUrl = memeId.getAttribute('src');
-  const link = document.createElement('a');
-  link.href = memeUrl;
-  link.download = 'meme.png'; // specify the filename
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-};
-
 export default function App() {
   const [topTextInput, setTopTextInput] = useState('');
   const [bottomTextInput, setBottomTextInput] = useState('');
   const [memeTemplate, setMemeTemplate] = useState('ugandanknuck');
+  const downloadMeme = () => {
+    saveAs(`${memeId.getAttribute('src')}`, 'meme.png');
+  };
 
   return (
     <div className="App">
