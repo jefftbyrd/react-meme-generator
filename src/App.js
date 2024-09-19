@@ -1,8 +1,6 @@
 import './App.css';
 import { useState } from 'react';
 
-// import MemeImage from './MemeImage';
-
 function MemeImage(props) {
   let topTextOutput = `/${props.topText}`;
   let bottomTextOutput = `/${props.bottomText}`;
@@ -19,12 +17,22 @@ function MemeImage(props) {
 
   return (
     <img
-      // src={`https://api.memegen.link/images/${props.template}/${props.topText}/${props.bottomText}.png?height=450&width=450`}
       src={`https://api.memegen.link/images${templateOutput}${topTextOutput}${bottomTextOutput}.png?height=450&width=450`}
-      alt="Here is an image!"
+      alt="Your desired meme"
+      id="memeId"
     />
   );
 }
+
+const downloadMeme = () => {
+  const memeUrl = memeId.getAttribute('src');
+  const link = document.createElement('a');
+  link.href = memeUrl;
+  link.download = 'meme.png'; // specify the filename
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
 
 export default function App() {
   const [topTextInput, setTopTextInput] = useState('');
@@ -47,7 +55,6 @@ export default function App() {
           <div>
             <label htmlFor="topTextInput">Top text </label>
             <input
-              // value={topTextInput}
               id="toptextInput"
               onChange={(event) => setTopTextInput(event.currentTarget.value)}
             />{' '}
@@ -56,7 +63,6 @@ export default function App() {
           <div>
             <label htmlFor="bottomTextInput">Bottom text </label>
             <input
-              // value={bottomTextInput}
               id="bottomTextInput"
               onChange={(event) =>
                 setBottomTextInput(event.currentTarget.value)
@@ -66,9 +72,7 @@ export default function App() {
           <div>
             <label htmlFor="memeTemplate">Meme template </label>
             <input
-              // value={memeTemplate}
               id="memeTemplate"
-              // onChange={(event) => setMemeTemplate(event.currentTarget.value)}
               onKeyDown={(event) =>
                 event.key === 'Enter'
                   ? setMemeTemplate(event.currentTarget.value)
@@ -84,7 +88,7 @@ export default function App() {
             bottomText={bottomTextInput}
           />
         </div>
-        {/* <button type="button" onClick={(event) => }></button> */}
+        <button onClick={downloadMeme}>Download</button>
       </header>
     </div>
   );
