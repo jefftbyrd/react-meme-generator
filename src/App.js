@@ -20,6 +20,7 @@ function MemeImage(props) {
       src={`https://api.memegen.link/images${templateOutput}${topTextOutput}${bottomTextOutput}.png?height=450&width=450`}
       alt="Your desired meme"
       id="memeId"
+      data-test-id="meme-image"
     />
   );
 }
