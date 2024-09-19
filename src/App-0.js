@@ -3,25 +3,10 @@ import { useState } from 'react';
 
 // import MemeImage from './MemeImage';
 
-function MemeImage(props) {
-  let topTextOutput = `/${props.topText}`;
-  let bottomTextOutput = `/${props.bottomText}`;
-  let templateOutput = `/${props.template}`;
-  if (!props.topText) {
-    topTextOutput = '/ ';
-  }
-  if (!props.bottomText) {
-    bottomTextOutput = '';
-  }
-  if (!props.template) {
-    templateOutput = '';
-  }
-
+export function MemeImage(props) {
   return (
     <img
-      // src={`https://api.memegen.link/images/${props.template}/${props.topText}/${props.bottomText}.png?height=450&width=450`}
-      src={`https://api.memegen.link/images${templateOutput}${topTextOutput}${bottomTextOutput}.png?height=450&width=450`}
-      alt="Here is an image!"
+      src={`https://api.memegen.link/images/${props.template}/${props.topText}/${props.bottomText}.png?height=450&width=450`}
     />
   );
 }
@@ -29,7 +14,19 @@ function MemeImage(props) {
 export default function App() {
   const [topTextInput, setTopTextInput] = useState('');
   const [bottomTextInput, setBottomTextInput] = useState('');
-  const [memeTemplate, setMemeTemplate] = useState('ugandanknuck');
+  const [memeTemplate, setMemeTemplate] = useState('');
+  // const [imageUrl, setImageUrl] = useState(
+  //   'https://api.memegen.link/images/ugandanknuck.png',
+  // );
+  // const imageUrl = `https://api.memegen.link/images/${memeTemplate}/${topTextInput}/${bottomTextInput}.png?height=450&width=450`;
+  // let imageUrl = 'https://api.memegen.link/images/ugandanknuck.png';
+  // if (topTextInput || bottomTextInput) {
+  //   imageUrl = `https://api.memegen.link/images/ugandanknuck/${topTextInput}/${bottomTextInput}.png?height=450&width=450`;
+  // } else if (memeTemplate) {
+  //   imageUrl = `https://api.memegen.link/images/${memeTemplate}/${topTextInput}/${bottomTextInput}.png?height=450&width=450`;
+  // } else {
+  //   imageUrl = 'https://api.memegen.link/images/ugandanknuck.png';
+  // }
 
   return (
     <div className="App">
@@ -41,42 +38,51 @@ export default function App() {
             event.preventDefault();
             setTopTextInput(topTextInput);
             setBottomTextInput(bottomTextInput);
-            setMemeTemplate(memeTemplate);
           }}
         >
           <div>
             <label htmlFor="topTextInput">Top text </label>
             <input
-              // value={topTextInput}
+              value={topTextInput}
               id="toptextInput"
               onChange={(event) => setTopTextInput(event.currentTarget.value)}
-            />{' '}
+            />
+            {/* <button>Submit</button> */}
           </div>
+
+          {/* <div>
+            <Fetch />
+          </div> */}
 
           <div>
             <label htmlFor="bottomTextInput">Bottom text </label>
             <input
-              // value={bottomTextInput}
+              value={bottomTextInput}
               id="bottomTextInput"
               onChange={(event) =>
                 setBottomTextInput(event.currentTarget.value)
               }
             />
+            {/* <button>Submit</button> */}
           </div>
+
           <div>
             <label htmlFor="memeTemplate">Meme template </label>
             <input
-              // value={memeTemplate}
+              value={memeTemplate}
               id="memeTemplate"
-              // onChange={(event) => setMemeTemplate(event.currentTarget.value)}
-              onKeyDown={(event) =>
-                event.key === 'Enter'
-                  ? setMemeTemplate(event.currentTarget.value)
-                  : null
-              }
+              onChange={(event) => setMemeTemplate(event.currentTarget.value)}
             />
+            {/* <button>Submit</button> */}
           </div>
         </form>
+
+        {/* <div className="readOut">
+          <h4>Read-out</h4>
+          <p>Log Top: {topTextInput}</p>
+          <p>Log Bottom: {bottomTextInput}</p>
+        </div> */}
+
         <div id="memeArea">
           <MemeImage
             template={memeTemplate}
@@ -84,7 +90,6 @@ export default function App() {
             bottomText={bottomTextInput}
           />
         </div>
-        {/* <button type="button" onClick={(event) => }></button> */}
       </header>
     </div>
   );
