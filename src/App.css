@@ -1,3 +1,36 @@
+h1 {
+  font-family: 'Nabla', system-ui;
+  font-optical-sizing: auto;
+  font-size: 80px;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    'EDPT' 100,
+    'EHLT' 12;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  color: #95fc35;
+  background-color: #5e6392;
+  animation: changeColor 6s infinite;
+}
+
+@keyframes changeColor {
+  0% {
+    background-color: #5e6392;
+  }
+
+  50% {
+    background-color: #4a3270;
+  }
+
+  100% {
+    background-color: #5e6392;
+  }
+}
+
 .App {
   text-align: center;
 }
@@ -14,14 +47,12 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
@@ -37,20 +68,54 @@
   }
 }
 
-.readOut {
-  background-color: black;
-  color: red;
-  padding: 10px 0px;
-  width: 450px;
+.memeArea {
+  align-items: center;
+  justify-content: center;
 }
 
-#memeArea {
-  background-color: purple;
-  height: 450px;
-  width: 450px;
+.memeArea img {
+  border: 6px #35fc38 solid;
+  border-radius: 25px;
+}
 
-  /* display: flex;
+.userInput {
+  padding: 30px 0px 20px 0px;
+  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center; */
+  align-items: start;
+  justify-content: left;
+  text-transform: uppercase;
+  font-size: 2rem;
+  letter-spacing: 0.4rem;
+}
+
+.userInput div {
+  margin-bottom: 10px;
+}
+
+.userInput div input {
+  vertical-align: middle;
+  padding: 10px;
+  background-color: #ffde00;
+  margin-right: 10px;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+.userInput div label {
+  vertical-align: middle;
+}
+
+.download {
+  background-color: #ffde00;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.3rem;
+  font-size: 2rem;
+  padding: 5px 10px;
+  margin-top: 20px;
+}
+
+.download:hover {
+  background-color: #95fc35;
 }
