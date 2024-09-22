@@ -71,8 +71,8 @@ export default function App() {
                   : null
               }
             />
-            <label htmlFor="memeTemplate">
-              <strong>Meme template</strong>{' '}
+            <label htmlFor="memeTemplate" style={{ fontWeight: '900' }}>
+              Meme template
             </label>
           </div>
           <div>
