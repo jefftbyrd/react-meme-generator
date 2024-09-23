@@ -2,13 +2,17 @@ import './App.css';
 import { saveAs } from 'file-saver';
 import { useState } from 'react';
 
+// Initialize the Meme URL and filename variables.
 let memeUrl = '';
 let memeFileName = '';
 
+// Props function
 function MemeImage(props) {
   let topTextOutput = `/${props.topText}`;
   let bottomTextOutput = `/${props.bottomText}`;
   let templateOutput = `/${props.template}`;
+
+  // Adjust the URL in case the top or bottom text entry fields are empty.
   if (!props.topText) {
     topTextOutput = '/ ';
   }
@@ -19,7 +23,8 @@ function MemeImage(props) {
     templateOutput = '';
   }
 
-  memeUrl = `https://api.memegen.link/images${templateOutput}${topTextOutput}${bottomTextOutput}.png?height=550`;
+  // Generate the Meme URL from props
+  memeUrl = `https://api.memegen.link/images${templateOutput}${topTextOutput}${bottomTextOutput}.png`;
 
   // Clean up the filename replacing spaces with dashes
   memeFileName = `${props.template} ${props.topText} ${props.bottomText}.png`
@@ -27,6 +32,7 @@ function MemeImage(props) {
     .replace(/\s+/g, '-');
 
   return (
+    // Generate the Meme Image.
     <img
       src={memeUrl}
       alt={`Your requested meme, using the ${props.template} template with a top text of ${props.topText} and bottom text of ${props.bottomText}.`}
@@ -36,6 +42,7 @@ function MemeImage(props) {
 }
 
 export default function App() {
+  // useState Functions
   const [topTextInput, setTopTextInput] = useState('');
   const [bottomTextInput, setBottomTextInput] = useState('');
   const [memeTemplate, setMemeTemplate] = useState('nice');
@@ -63,6 +70,7 @@ export default function App() {
               paddingBottom: '20px',
             }}
           >
+            {/* Meme Template Input waits for user to hit the enter key. */}
             <input
               id="memeTemplate"
               onKeyDown={(event) =>
@@ -76,22 +84,25 @@ export default function App() {
             </label>
           </div>
           <div>
+            {/* Top Text Input */}
             <input
               id="topTextInput"
               onChange={(event) => setTopTextInput(event.currentTarget.value)}
             />
-            <label htmlFor="topTextInput">Top text </label>
+            <label htmlFor="topTextInput">Top text</label>
           </div>
           <div>
+            {/* Bottom Text Input */}
             <input
               id="bottomTextInput"
               onChange={(event) =>
                 setBottomTextInput(event.currentTarget.value)
               }
             />
-            <label htmlFor="bottomTextInput">Bottom text </label>
+            <label htmlFor="bottomTextInput">Bottom text</label>
           </div>
         </form>
+        {/* Meme Image Area */}
         <div className="memeArea">
           <MemeImage
             template={memeTemplate}
@@ -99,6 +110,7 @@ export default function App() {
             bottomText={bottomTextInput}
           />
         </div>
+        {/* Download Button */}
         <button className="download" onClick={downloadMeme}>
           Download
         </button>

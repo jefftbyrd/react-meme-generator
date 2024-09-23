@@ -12,6 +12,7 @@ h1 {
 }
 
 body {
+  /* Pulsating background color animation effect */
   color: #95fc35;
   background-color: #5e6392;
   animation: changeColor 6s infinite;
@@ -35,17 +36,6 @@ body {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   min-height: 100vh;
   display: flex;
@@ -53,19 +43,6 @@ body {
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .memeArea {
